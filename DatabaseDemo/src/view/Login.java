@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 
@@ -30,6 +33,7 @@ public class Login extends JPanel {
 		tfUsername.setColumns(10);
 		
 		tfPassword = new JPasswordField();
+
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -41,6 +45,13 @@ public class Login extends JPanel {
 					main.changePanel(new Home());
 				}else {
 					JOptionPane.showMessageDialog(new Frame(), "Username or password incorrect!");
+				}
+			}
+		});
+		tfPassword.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnLogin.doClick();
 				}
 			}
 		});
